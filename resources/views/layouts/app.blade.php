@@ -38,77 +38,43 @@
                         @guest
                         @else
 
-                        @if (Auth::user()->hasRole('admin') && Auth::user()->hasRole('author'))
-                        <li class="nav-item dropdown mr-1">
-                            <!-- <a class="nav-link" href="#">{{ __('Menu author') }}</a> -->
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Menu admin') }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
-                                    {{ __('Posts not moderated') }}
-                                </a>
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
-                                    {{ __('All posts') }}
-                                </a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown mr-1">
-                            <!-- <a class="nav-link" href="#">{{ __('Menu author') }}</a> -->
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Menu author') }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
-                                    {{ __('My posts') }}
-                                </a>
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
-                                    {{ __('All posts') }}
-                                </a>
-                            </div>
-                        </li>
-                        @else
-
-                        @if (Auth::user()->hasRole('author'))
-                        <li class="nav-item dropdown mr-1">
-                            <!-- <a class="nav-link" href="#">{{ __('Menu author') }}</a> -->
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Menu author') }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
-                                    {{ __('My posts') }}
-                                </a>
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
-                                    {{ __('All posts') }}
-                                </a>
-                            </div>
-                        </li>
+                        @if (Auth::user()->hasRole('author') || Auth::user()->hasRole('admin'))
+                        <a class="nav-link" href="{{ url('/') }}">{{ __('All posts') }}</a>
                         @endif
-
+                        @if (Auth::user()->hasRole('author') || Auth::user()->hasRole('admin'))
+                        <a class="nav-link" href="#" onclick="event.preventDefault(); ">{{ __('My posts') }}</a>
+                        @endif
                         @if (Auth::user()->hasRole('admin'))
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Menu admin') }}</a>
-                        </li> -->
-                        <li class="nav-item dropdown mr-1">
-                            <!-- <a class="nav-link" href="#">{{ __('Menu author') }}</a> -->
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Menu admin') }}
-                            </a>
+                        <a class="nav-link" href="#" onclick="event.preventDefault(); ">{{ __('Posts not moderated') }}</a>
+                        @endif
 
+                        <!-- <li class="nav-item dropdown mr-1">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ 'Menu : ' .  Auth::user()->name }}
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                @if (Auth::user()->hasRole('author') || Auth::user()->hasRole('admin'))
+                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
+                                    {{ __('All posts') }}
+                                </a>
+                                @endif
+
+                                @if (Auth::user()->hasRole('author') || Auth::user()->hasRole('admin'))
+                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
+                                    {{ __('My posts') }}
+                                </a>
+                                @endif
+
+                                @if (Auth::user()->hasRole('admin'))
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); ">
                                     {{ __('Posts not moderated') }}
                                 </a>
-                            </div>
-                        </li>
-                        @endif
+                                @endif
 
-                        @endif
+                            </div>
+                        </li> -->
+
                         @endguest
                     </ul>
 

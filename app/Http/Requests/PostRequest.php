@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateApiPostRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,8 @@ class CreateApiPostRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'min:3', 'max:25'],
             'body' => 'required|min:3|max:1024',
-            'user_id' => 'required|integer',
+            'status' => 'boolean',
+            // 'user_id' => 'required|integer',
         ];
     }
 }
